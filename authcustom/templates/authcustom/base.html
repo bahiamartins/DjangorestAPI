@@ -1,0 +1,52 @@
+{% load static %}
+<!doctype html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>{% block title %}{% endblock %} - APP</title>
+      <link rel="stylesheet" type="text/css" href="{% static 'authcustom/css/bootstrap.css' %}" >
+      {% block head %}
+      {% endblock %}
+      <style>
+         html,
+         body {
+           height: 100%;
+           font-size: 14px;
+         }
+
+         body {
+           align-items: center;
+           padding-top: 40px;
+           padding-bottom: 40px;
+           background-color: #f5f5f5;
+         }
+      </style>
+      {% block style %}
+      {% endblock %}
+   </head>
+   <body>
+       <nav class="navbar fixed-top navbar-light" style="background-color: #abc7dc;">
+         <div class="container">
+             <a class="navbar-brand" href="#">APP</a>
+             {% block navitens %}
+             {% endblock %}
+         </div>
+       </nav>
+      <div style="margin-bottom:200px">
+      {% block content %}
+      {% endblock %}
+      </div>
+      <nav class="fixed-bottom text-center text-muted" style="font-size:0.9rem">
+        <div class="container" style="border-top: 1px #ccc solid; padding:10px; background-color: #f5f5f5;">
+            <span>&copy; {% now "Y" %}</span>
+        </div>
+      </nav>
+      <script src="{% static 'authcustom/js/jquery-3.3.1.min.js' %}"></script>
+      <script src="{% static 'authcustom/js/popper.min.js' %}"></script>
+      <script src="{% static 'authcustom/js/bootstrap.js' %}"></script>
+      <script src="{% static 'authcustom/js/ajax-setup.js' %}"></script>
+      {% block js %}
+      {% endblock %}
+   </body>
+</html>
