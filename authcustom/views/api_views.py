@@ -41,6 +41,11 @@ class UserList(generics.ListAPIView):
     serializer_class = UserSerializer
 
 
+class UserListAuth(DefaultMixin, generics.ListAPIView):
+    queryset = User.objects.all().order_by('-id')
+    serializer_class = UserSerializer
+
+
 class UserCreate(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserCreateSerializer
