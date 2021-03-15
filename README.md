@@ -20,3 +20,8 @@ python manage.py migrate
 ```
 
 No Admin crie seu Token.
+
+
+## Links
+
+http://www.cdrf.co/3.9/rest_framework.generics/CreateAPIView.html#perform_create
