@@ -15,7 +15,11 @@ from authcustom.serializers import *
 
 class DefaultMixin(object):
     """ configuração default para api """
-    authentication_classes = (authentication.SessionAuthentication, authentication.BasicAuthentication, authentication.TokenAuthentication)
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.BasicAuthentication,
+        authentication.TokenAuthentication
+    )
     permission_classes = (permissions.AllowAny,)
     paginate_by = 10
 
@@ -31,10 +35,29 @@ def user(request, pk, format=None):
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
-class UserList(DefaultMixin, generics.ListCreateAPIView):
+
+class UserList(generics.ListAPIView):
     queryset = User.objects.all().order_by('-id')
     serializer_class = UserSerializer
-    #paginate_by = 10
-    
+
+
+class UserCreate(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserCreateSerializer
+
+    # def perform_create(self, serializer):
+    #     serializer.save()
+
     def perform_create(self, serializer):
-        serializer.save()
+        queryset = User.objects.filter(username=serializer.data["username"])
+        if queryset.exists():
+            raise ValidationError('You have already signed up')
+        else:
+            obj = User.objects.create(
+                username=serializer.data["email"],
+                email=serializer.data["email"],
+                first_name=serializer.data["first_name"],
+                last_name=serializer.data["last_name"]
+            )
+            obj.set_password(serializer.data["password"])
+            obj.save()
