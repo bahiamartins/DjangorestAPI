@@ -1,0 +1,23 @@
+.form {
+  width: 100%;
+  max-width: 430px;
+  padding: 15px;
+  margin: auto;
+}
+.form .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  margin-bottom: -1px;
+}
+
+.no-border-top-radius {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.no-border-bottom-radius {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
