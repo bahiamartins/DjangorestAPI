@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
-from rest_framework import serializers
+from rest_framework.serializers import CharField, ModelSerializer
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(ModelSerializer):
 
     class Meta:
         model = User
@@ -18,7 +18,8 @@ class UserSerializer(serializers.ModelSerializer):
         )
 
 
-class UserCreateSerializer(serializers.ModelSerializer):
+class UserCreateSerializer(ModelSerializer):
+    password = CharField(style={'input_type': 'password'})
 
     class Meta:
         model = User

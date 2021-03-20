@@ -1,6 +1,7 @@
 from django.urls import path
-from authcustom.views import views as authcustom
+
+from .views import login_view
 
 urlpatterns = [
-    path('', authcustom.login_view, name='login_view'),
+    path('', login_view, name='login_view'),
 ]
