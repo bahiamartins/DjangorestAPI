@@ -34,6 +34,25 @@ user = User.objects.first()
 Token.objects.create(user=user)
 ```
 
+## Swagger
+
+http://localhost:8000/swagger/
+
+## Postman
+
+POST: http://localhost:8000/api/users/
+
+Body > raw > JSON
+
+```
+{
+  "email": "user@example.com",
+  "first_name": "string",
+  "last_name": "string",
+  "password": "string"
+}
+```
+
 
 ## Links
 
