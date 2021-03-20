@@ -17,9 +17,22 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
+python manage.py createsuperuser --username="admin" --email=""
 ```
 
-No Admin crie seu Token.
+No Admin crie seu Token. Ou pelo terminal:
+
+```python
+python manage.py shell_plus
+```
+
+```python
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+
+user = User.objects.first()
+Token.objects.create(user=user)
+```
 
 
 ## Links
