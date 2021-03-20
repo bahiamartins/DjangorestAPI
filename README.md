@@ -42,7 +42,7 @@ http://localhost:8000/swagger/
 
 POST: http://localhost:8000/api/users/
 
-Body > raw > JSON
+`Body > raw > JSON`
 
 ```
 {
@@ -56,8 +56,6 @@ Body > raw > JSON
 
 ## Links
 
-https://www.django-rest-framework.org/api-guide/viewsets/
-
-http://www.cdrf.co/3.9/rest_framework.generics/CreateAPIView.html#perform_create
-
-https://drf-yasg.readthedocs.io/en/stable
+* https://www.django-rest-framework.org/api-guide/viewsets/
+* http://www.cdrf.co/3.9/rest_framework.generics/CreateAPIView.html#perform_create
+* https://drf-yasg.readthedocs.io/en/stable
