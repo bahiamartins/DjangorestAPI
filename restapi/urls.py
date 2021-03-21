@@ -21,8 +21,7 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
-router = routers.DefaultRouter()
-router.register(r'users', v.UserViewSet, basename='users')
+# router
 
 swagger_urlpatterns = [
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
@@ -33,6 +32,6 @@ swagger_urlpatterns = [
 
 urlpatterns = [
     path('', include('authcustom.urls')),
-    path('api/', include(router.urls)),
+    # path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
 ] + swagger_urlpatterns
