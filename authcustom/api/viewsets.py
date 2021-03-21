@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.db.models import Q
 from rest_framework.exceptions import ValidationError as DRFValidationError
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ModelViewSet
@@ -16,7 +17,10 @@ class UserViewSet(ModelViewSet):
         return UserSerializer
 
     def perform_create(self, serializer):
-        queryset = User.objects.filter(email=serializer.data["email"])
+        queryset = User.objects.filter(
+            Q(username=serializer.data["email"]) |
+            Q(email=serializer.data["email"])
+        )
         if queryset.exists():
             raise DRFValidationError('E-mail já existe.')
         else:
