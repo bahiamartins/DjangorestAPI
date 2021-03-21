@@ -7,6 +7,7 @@ from rest_framework import permissions, routers
 
 from authcustom.api import viewsets as v
 
+# swagger
 schema_view = get_schema_view(
     openapi.Info(
         title="Snippets API",

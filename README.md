@@ -24,15 +24,7 @@ python manage.py createsuperuser --username="admin" --email=""
 No Admin crie seu Token. Ou pelo terminal:
 
 ```python
-python manage.py shell_plus
-```
-
-```python
-from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
-
-user = User.objects.first()
-Token.objects.create(user=user)
+python manage.py drf_create_token admin
 ```
 
 ## Swagger
@@ -57,6 +49,8 @@ POST: http://localhost:8000/api/users/
 
 ## Links
 
+* http://www.cdrf.co/3.9/rest_framework.viewsets/ModelViewSet.html
+* https://www.django-rest-framework.org/api-guide/generic-views/#modelviewset
 * https://www.django-rest-framework.org/api-guide/viewsets/
 * http://www.cdrf.co/3.9/rest_framework.generics/CreateAPIView.html#perform_create
 * https://drf-yasg.readthedocs.io/en/stable
