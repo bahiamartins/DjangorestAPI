@@ -49,3 +49,21 @@ class UserViewSet(ModelViewSet):
         else:
             raise DRFValidationError('Você não tem acesso a este usuário.')
         return Response(serializer.data)
+
+    def perform_update(self, request, *args, **kwargs):
+        try:
+            user = User.objects.get(pk=request.data['id'])
+        except User.DoesNotExist:
+            raise DRFValidationError('Usuário não encontrado.')
+
+        if self.request.user and self.request.user.is_authenticated:
+            if self.request.user == user:
+                email = request.data["email"]
+                if email:
+                    if user.email == email:
+                        DRFValidationError('Email igual ao já cadastrado.')
+                    elif User.objects.filter(email=email).exists():
+                        DRFValidationError('Já existe um outro usuário com este email.')
+            else:
+                DRFValidationError('Você não tem permissão para esta operação.')
+        return self.update(request, *args, **kwargs)
