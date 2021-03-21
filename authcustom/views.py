@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 
-from authcustom.forms import *
+from authcustom.forms import LoginForm
 
 
 @csrf_protect

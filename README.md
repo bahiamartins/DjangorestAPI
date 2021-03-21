@@ -33,6 +33,11 @@ http://localhost:8000/swagger/
 
 ## Postman
 
+GET: http://localhost:8000/api/users/1/
+
+`Headers > key: Authorization , value: 'Token <seu_token>'`
+
+
 POST: http://localhost:8000/api/users/
 
 `Body > raw > JSON`
