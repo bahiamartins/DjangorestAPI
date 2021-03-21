@@ -18,7 +18,8 @@ def login_view(request):
             if user:
                 if user.is_active:
                     login(request, user)
-            msg_error = 'Usuário e senha não conferem.'
-            messages.error(request, msg_error)
+            else:
+                msg_error = 'Usuário e senha não conferem.'
+                messages.error(request, msg_error)
 
     return render(request, 'authcustom/login.html', {'form': form})
