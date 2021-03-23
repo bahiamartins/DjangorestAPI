@@ -2,10 +2,14 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from rest_framework.exceptions import ValidationError as DRFValidationError
 from rest_framework.permissions import AllowAny
-from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 
-from .serializers import UserCreateSerializer, UserSerializer
+from .serializers import (
+    UserCreateSerializer,
+    UserSerializer,
+    UserUpdateSerializer
+)
 
 
 class UserViewSet(ModelViewSet):
@@ -16,6 +20,8 @@ class UserViewSet(ModelViewSet):
         # Muda o serializer dependendo da ação.
         if self.action == 'create':
             return UserCreateSerializer
+        if self.action == 'update':
+            return UserUpdateSerializer
         return UserSerializer
 
     def perform_create(self, serializer):
@@ -49,3 +55,26 @@ class UserViewSet(ModelViewSet):
         else:
             raise DRFValidationError('Você não tem acesso a este usuário.')
         return Response(serializer.data)
+
+    def perform_update(self, serializer):
+        # Método para editar um usuário.
+        instance = self.get_object()
+        data = self.request.data
+        request_user = self.request.user
+        pk = instance.id
+
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise DRFValidationError('Usuário não encontrado.')
+
+        if request_user and request_user.is_authenticated:
+            if request_user == user:
+                email = data["email"]
+                if user.email == email:
+                    raise DRFValidationError('Email igual ao já cadastrado.')
+                elif User.objects.filter(email=email).exists():
+                    raise DRFValidationError('Já existe um outro usuário com este email.')
+            else:
+                raise DRFValidationError('Você não tem permissão para esta operação.')
+        return super(UserViewSet, self).perform_update(serializer)
