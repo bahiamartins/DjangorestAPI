@@ -54,6 +54,8 @@ POST: http://localhost:8000/api/users/
 
 ## Links
 
+* https://www.django-rest-framework.org/tutorial/quickstart/
+* http://pythonclub.com.br/django-rest-framework-quickstart.html
 * http://www.cdrf.co/3.9/rest_framework.viewsets/ModelViewSet.html
 * https://www.django-rest-framework.org/api-guide/generic-views/#modelviewset
 * https://www.django-rest-framework.org/api-guide/viewsets/
