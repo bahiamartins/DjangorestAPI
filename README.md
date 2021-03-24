@@ -1,4 +1,4 @@
-# DjangorestAPI
+# DEV-IMPACT-01-DRF
 
 Exemplo de API feita em [Django Rest Framework](https://www.django-rest-framework.org/).
 
@@ -11,8 +11,8 @@ Exemplo de API feita em [Django Rest Framework](https://www.django-rest-framewor
 * Rode as migrações.
 
 ```
-git clone https://github.com/bahiamartins/DjangorestAPI.git
-cd DjangorestAPI
+git clone https://github.com/jobconvo/DEV-IMPACT-01-DRF.git dev-impact-01-drf
+cd dev-impact-01-drf
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
